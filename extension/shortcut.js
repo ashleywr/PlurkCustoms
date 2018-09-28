@@ -32,7 +32,7 @@ function shortcut(gallery){
 							gallery.open('tools', findCurrentInput(e.target));
 							return false;
 						}
-					}),
+					})
 
 				]
 			}).appendTo(container)
@@ -44,7 +44,7 @@ function shortcut(gallery){
 		    url: "/EmoticonManager2",
 		    width: 660,
 		    height: 444,
-		    onColse: function() {
+		    onClose: function() {
 		       EmoticonsMy.reloadEverything()
 		    }
 			})).show();`);
@@ -58,13 +58,15 @@ function shortcut(gallery){
 			return id;
 		}
 
-		function openGallery(event){
-			// NOTE: plurkFrom 官方錯字
-			var input = gallery.lastInputFocused = $(event.target).closest('.plurkForm, .plurkFrom').find('#input_big, #input_small').get(0);
-			var id = $(gallery.lastInputFocused).attr('id');
-			localScript("Emoticons.toggle('"+id+"');");
-			gallery.openGallery();
-			$("#emoticon_selecter").css({'top': $(this).offset().top+30, 'left': $(this).offset().left});
-			return false;
-		}
+		//function openGallery(event){
+		//	// NOTE: plurkFrom 官方錯字
+		//	var input = gallery.lastInputFocused = $(event.target).closest('.plurkForm, .plurkFrom').find('#input_big, #input_small').get(0);
+		//	var id = $(gallery.lastInputFocused).attr('id');
+		//	//EmoticonSelector.toggleFrom(i.input, i.input)
+		//	localScript(`EmoticonSelector.toggleFrom($('#${id}'),$('#${id}'));`);
+		//	//localScript("Emoticons.toggle('"+id+"');");
+		//	gallery.openGallery();
+		//	$("#emoticon-selector").css({'top': $(this).offset().top+30, 'left': $(this).offset().left});
+		//	return false;
+		//}
 }

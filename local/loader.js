@@ -4,8 +4,11 @@ function localScript(scriptText, args){
 	var script = document.createElement('script'); 
 	script.type = 'text/javascript'; 
 	script.appendChild(document.createTextNode(scriptText));
-	document.getElementsByTagName('head')[0].appendChild(script);	
-	setTimeout(function(){document.getElementsByTagName('head')[0].removeChild(script);}, 200)
+	document.documentElement.appendChild(script);
+	//document.getElementsByTagName('body')[0].appendChild(script);
+	setTimeout(function(){
+		script.parentNode.removeChild(script);
+	}, 200);
 }
 function loadScript(file){
 	var xhrObj = new XMLHttpRequest();
@@ -15,7 +18,8 @@ function loadScript(file){
 	se.setAttribute('ref', file);
 	se.type = "text/javascript";
 	se.text = xhrObj.responseText;
-	document.getElementsByTagName('head')[0].appendChild(se);
+	document.documentElement.appendChild(se);
+	//document.getElementsByTagName('head')[0].appendChild(se);
 }
 function loadStyle(file){
 	var xhrObj = new XMLHttpRequest();
@@ -29,7 +33,8 @@ function loadStyle(file){
 	} else {
 	  style.appendChild(document.createTextNode(xhrObj.responseText));
 	}
-	document.getElementsByTagName('head')[0].appendChild(style);
+	document.documentElement.appendChild(style);
+	//document.getElementsByTagName('head')[0].appendChild(style);
 }
 
 function createStyle(targetDocument, style){

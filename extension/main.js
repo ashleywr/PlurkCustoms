@@ -25,7 +25,7 @@ function manifest(name) {
 			manifest.data = data;
 		}
 	});
-	value = manifest.data[name]
+	value = manifest.data[name];
 	return value;
 }
 
@@ -123,19 +123,19 @@ var GLOBAL;
 	}
 
 	//RPlurkSmiley 版面
-	$('li.emoticon_selecter#karma_0').livequery(function(){
-		console.log($('li.emoticon_selecter'));
+	$('li.emoticon-selector#karma_0').livequery(function(){
+		console.log($('li.emoticon-selector'));
 		$('<div/>', {
 			css:{
 				'margin': '3px 0px',
 				'clear' :'both',
 				'overflow' : 'auto'
 			},
-			html: $('li.emoticon_selecter')
-		}).appendTo('#emoticons_tabs');
-		$('#emoticons_tabs > ul, #emoticons_tabs > div')
-			.click(function(){return false;})
-		$('.emoticon_selecter').mousedown(function(){return false;})
+			html: $('li.emoticon-selector')
+		}).appendTo('#emoticon-tabs');
+		$('#emoticon-tabs > ul, #emoticon-tabs > div')
+			.click(function(){return false;});
+		$('.emoticon-selector').mousedown(function(){return false;})
 	});
 
 

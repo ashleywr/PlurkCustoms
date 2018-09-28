@@ -89,12 +89,12 @@ body{
 	#emotiland {
 		z-index: 12020;
 	}
-	#emoticon_selecter {
+	#emoticon-selector {
 		width: 480px !important;
 		min-width: 480px !important;
 		z-index: 12000 ;
 		a:hover img { border:none !important; }
-		#emoticons_show {
+		#emoticons-holder {
 			position: relative;
 			height: 280px !important;
 			width: 100% !important;
@@ -190,7 +190,7 @@ body{
 			top: auto !important;
 			bottom: 0px !important;
 			left: 0px !important;
-			#emoticons_show {
+			#emoticons-holder {
 				height: 265px !important;
 				overflow: hidden;
 				table.plurkCustoms.gallery{	

@@ -153,6 +153,7 @@
 					bufferedEmotions = arrayClone(fixEmotionsStructure(emotions));
 					if(typeof emotions[0].url != 'undefined') return callback(arrayClone(bufferedEmotions));					
 				}catch(e) {
+					console.log(e);
 					emotions = [];
 					bufferedEmotions = [];
 					return callback(bufferedEmotions);

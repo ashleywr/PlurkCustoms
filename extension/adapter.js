@@ -8,7 +8,7 @@ var StorageAdapter = function(onlineStorage){
 			console.info('StorageAdapter', '收到刷新快取請求廣播');
 		}
 	}.bind(this), 200);
-}
+};
 StorageAdapter.prototype.online = null;
 StorageAdapter.prototype.handup = false;
 StorageAdapter.prototype.cache = null;
@@ -16,7 +16,7 @@ StorageAdapter.prototype.cache = null;
 StorageAdapter.prototype.flush = function(){
 	this.cache = null;
 	sessionStorage._PlurkCustomsFlushCache = true; // 廣播
-}
+};
 StorageAdapter.prototype.sendExtensionRequest = function(obj, callback){
 	if(this.handup) return false;
 	try{
@@ -27,7 +27,7 @@ StorageAdapter.prototype.sendExtensionRequest = function(obj, callback){
 		var c = confirm(__('無法連線到圖庫，請立即重新整理頁面看看，可能有版本更新，繼續將無法正常操作'));
 		if(c) window.location.reload();
 	}
-}
+};
 
 StorageAdapter.prototype.renameEmotion = function(url, keyword, newkeyword, callback){
 	var self = this;
@@ -36,7 +36,7 @@ StorageAdapter.prototype.renameEmotion = function(url, keyword, newkeyword, call
 			if(typeof callback == 'function') callback(emotions);
 		});
 	})
-}
+};
 
 //將單一個自訂表情從圖庫刪除
 StorageAdapter.prototype.deleteEmotion = function(keyword, callback){
@@ -47,7 +47,7 @@ StorageAdapter.prototype.deleteEmotion = function(keyword, callback){
 		self.flush();
 		if(typeof callback == 'function') callback(emotions);
 	});
-}
+};
 
 //將單一個自訂表情新增到圖庫
 StorageAdapter.prototype.saveEmotion = function(url, keyword, callback){
@@ -59,7 +59,7 @@ StorageAdapter.prototype.saveEmotion = function(url, keyword, callback){
 		self.flush();
 		if(typeof callback == 'function') callback(emotions);
 	});
-}
+};
 
 //取代所有 (警告)
 StorageAdapter.prototype.replaceEmotions = function(emotions, callback){
@@ -70,7 +70,7 @@ StorageAdapter.prototype.replaceEmotions = function(emotions, callback){
 		self.flush();
 		if(typeof callback == 'function') callback(emotions);
 	});
-}
+};
 //合併表情
 StorageAdapter.prototype.saveEmotions = function(emotions, callback){
 	var self = this;
@@ -80,7 +80,7 @@ StorageAdapter.prototype.saveEmotions = function(emotions, callback){
 		self.flush();
 		if(typeof callback == 'function') callback(emotions);
 	});
-}
+};
 //從圖庫載入所有表情
 StorageAdapter.prototype.loadEmotions = function(callback){
 	var self = this;
@@ -90,19 +90,19 @@ StorageAdapter.prototype.loadEmotions = function(callback){
 		return this.cache.slice(0);
 	}
 	this.sendExtensionRequest({loadEmotions: true}, function(emotions){
-		if(typeof emotions != 'object' && typeof emotions != 'array') emotions = new Array();
+		if(typeof emotions != 'object' && typeof emotions != 'array') emotions = [];
 		emotions = normalizeKeywordFilter(emotions);
-		emotions = _.map(emotions, function(emo){return _.pick(emo, ['hash_id', 'url', 'keyword']); })
+		emotions = _.map(emotions, function(emo){return _.pick(emo, ['hash_id', 'url', 'keyword']); });
 		self.cache = emotions.slice(0);
 		if(typeof callback == 'function') callback(emotions.slice(0));
 	});		
-}
+};
 //檢查表情是否在噗浪上
 StorageAdapter.prototype.isAlive = function(keyword, callback){
 	if(this.handup) return false;
 	//this.sendExtensionRequest({isAlive: true, keyword: keyword}, callback);
 	return this.online.isAlive(keyword, callback);
-}
+};
 
 function normalizeKeywordFilter(emoticons){
 	return _.map(emoticons, function(emo, i){
@@ -121,21 +121,21 @@ var PlurkEmotiland = function(){
 	this.getOnlineEmoticons(function(emoticons){
 		self.cache = emoticons.slice(0);
 	});
-}
+};
 
 PlurkEmotiland.urlHash = function(url){
 	return String(url).match(/plurk\.com\/([0-9a-zA-Z]+)/)[1];
-}
+};
 PlurkEmotiland.prototype.cache = [];
 PlurkEmotiland.prototype.hangup = false;
 PlurkEmotiland.prototype.getUserEmoticons = function(callback){
 	return this.getOnlineEmoticons(callback);
-}
+};
 PlurkEmotiland.prototype.isAlive = function(keyword, callback){
 	var alive =  _.findWhere(this.cache, {keyword: keyword});
 	callback && callback(alive);
 	return alive;
-}
+};
 PlurkEmotiland.prototype.getOnlineEmoticons = function(callback){
 	var self = this;
 	if(self.cache.length) {
@@ -156,6 +156,7 @@ PlurkEmotiland.prototype.getOnlineEmoticons = function(callback){
 					self.cache = onlineEmotions.slice(0);
 					callback && callback(onlineEmotions);
 				} catch(e){
+					console.log(e);
 					if(e instanceof TypeError){
 						localStorage.diedGetOnlineEmoticonsCount = localStorage.diedGetOnlineEmoticonsCount || 0;
 						localStorage.diedGetOnlineEmoticonsCount++;
@@ -170,7 +171,7 @@ PlurkEmotiland.prototype.getOnlineEmoticons = function(callback){
 			}
 		});		
 	}
-}
+};
 
 //將一個表情上傳到噗浪
 PlurkEmotiland.prototype.addEmotion = function(url, keyword, callback){
@@ -194,7 +195,7 @@ PlurkEmotiland.prototype.addEmotion = function(url, keyword, callback){
 		});
 
 	}
-}
+};
 
 //從噗浪上刪除一個表情
 PlurkEmotiland.prototype.removeEmotion = function(url, callback){
@@ -209,14 +210,14 @@ PlurkEmotiland.prototype.removeEmotion = function(url, callback){
 			callback && callback();
 		}
 	});
-}
+};
 PlurkEmotiland.prototype.getDefaultSmiles = function(callback){
 	var self = this;
 	if(self.defaultSmilesCache) {
 		callback && callback(self.defaultSmilesCache);
 		return self.defaultSmilesCache;
 	}
-	localScript("var _Emoticons = _Emoticons || {basic:EmoticonsList.basic, silver:EmoticonsList.silver, platinum:EmoticonsList.platinum, gold:EmoticonsList.gold, platinum_2:EmoticonsList.platinum_2, karma100:EmoticonsList.karma100};");
+	localScript("var _Emoticons = _Emoticons || {basic:EmoticonStatic.emoticons.basic, silver:EmoticonStatic.emoticons.silver, platinum:EmoticonStatic.emoticons.platinum, gold:EmoticonStatic.emoticons.gold, platinum_2:EmoticonStatic.emoticons.platinum_2, karma100:EmoticonStatic.emoticons.karma100};");
 	getLocal('GLOBAL', function(GLOBAL){
 		getLocal('_Emoticons', function(Emoticons){
 			var u = GLOBAL.session_user;
@@ -282,13 +283,13 @@ PlurkEmotiland.prototype.getDefaultSmiles = function(callback){
 				{url: "//www.plurk.com/static/emoticons/lantern/lantern-health.png", keyword: "lantern_health"},
 				{url: "//www.plurk.com/static/emoticons/lantern/lantern-fortune.png", keyword: "lantern_fortune"},
 				{url: "//www.plurk.com/static/emoticons/lantern/lantern-happy.png", keyword: "lantern_happy"}, 
-			]
+			];
 			for(var i in a) emoticons.push({ url: a[i][1], keyword: a[i][2] });		
 			self.defaultSmilesCache = emoticons;
 			callback && callback(emoticons);	
 		})
 	});	
-}
+};
 
 PlurkEmotiland.prototype.isPremium = function(callback){
 	if(GLOBAL){
@@ -297,11 +298,11 @@ PlurkEmotiland.prototype.isPremium = function(callback){
 	getLocal('GLOBAL', function(GLOBAL){
 		callback && callback(GLOBAL.page_user.premium);
 	});	
-}
+};
 
 PlurkEmotiland.prototype.getStorageLimit = function(callback){
 	this.isPremium(function(isPremium){
-		console.info('上限', isPremium ? 500 : 60)
+		console.info('上限', isPremium ? 500 : 60);
 		callback && callback(isPremium ? 500 : 60);
 	});
-}
+};

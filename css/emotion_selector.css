@@ -91,13 +91,13 @@ span.emoticon_my_wrapper:after {
 
 body #emotiland {
   z-index: 12020; }
-body #emoticon_selecter {
+body #emoticon-selector {
   width: 480px !important;
   min-width: 480px !important;
   z-index: 12000; }
-  body #emoticon_selecter a:hover img {
+  body #emoticon-selector a:hover img {
     border: none !important; }
-  body #emoticon_selecter #emoticons_show {
+  body #emoticon-selector #emoticons-holder {
     position: relative;
     height: 280px !important;
     width: 100% !important;
@@ -107,9 +107,9 @@ body #emoticon_selecter {
     color: #555;
     overflow-y: auto;
     background-color: #F9F9FD; }
-    body #emoticon_selecter #emoticons_show .tabWrapper {
+    body #emoticon-selector #emoticons-holder .tabWrapper {
       overflow: hidden; }
-    body #emoticon_selecter #emoticons_show .loading {
+    body #emoticon-selector #emoticons-holder .loading {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -122,12 +122,12 @@ body #emoticon_selecter {
       background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare-grey.gif);
       background-repeat: no-repeat;
       background-size: 80px; }
-    body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery {
+    body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery {
       margin: 8px;
       width: 460px; }
-      body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr {
+      body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr {
         display: inline; }
-        body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td {
+        body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td {
           -moz-transition: 0.1s linear;
           -webkit-transition: 0.1s linear;
           display: inline-block !important;
@@ -140,33 +140,33 @@ body #emoticon_selecter {
           width: 55px;
           height: 55px;
           cursor: pointer; }
-          body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td.highlighted {
+          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td.highlighted {
             opacity: 1;
             position: relative !important;
             z-index: 9999 !important;
             -webkit-box-shadow: 0 0 2px 3px #4A7DE4 !important;
             -moz-box-shadow: 0 0 2px 3px #4A7DE4 !important; }
-          body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td a {
+          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a {
             display: inline-block;
             width: 100%;
             height: 100%; }
-            body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td a.uploading {
+            body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a.uploading {
               background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-orange.gif);
               background-position: center;
               background-repeat: no-repeat; }
-              body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td a.uploading img {
+              body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a.uploading img {
                 display: none; }
-          body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td img {
+          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td img {
             vertical-align: middle;
             max-width: 48px;
             max-height: 48px; }
-      body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery:hover td:hover {
+      body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery:hover td:hover {
         opacity: 1;
         position: relative !important;
         z-index: 9999 !important;
         box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px;
         border-radius: 4px; }
-  body #emoticon_selecter.large {
+  body #emoticon-selector.large {
     background: white;
     box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.5);
     width: 100% !important;
@@ -175,32 +175,32 @@ body #emoticon_selecter {
     top: auto !important;
     bottom: 0px !important;
     left: 0px !important; }
-    body #emoticon_selecter.large #emoticons_show {
+    body #emoticon-selector.large #emoticons-holder {
       height: 265px !important;
       overflow: hidden; }
-      body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery {
+      body #emoticon-selector.large #emoticons-holder table.plurkCustoms.gallery {
         width: 100%; }
-        body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery tr {
+        body #emoticon-selector.large #emoticons-holder table.plurkCustoms.gallery tr {
           display: inline !important; }
-        body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery td {
+        body #emoticon-selector.large #emoticons-holder table.plurkCustoms.gallery td {
           display: inline-block !important;
           width: 58px;
           height: 58px;
           line-height: 58px;
           white-space: nowrap; }
-          body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery td img {
+          body #emoticon-selector.large #emoticons-holder table.plurkCustoms.gallery td img {
             vertical-align: middle; }
-        body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery td:after {
+        body #emoticon-selector.large #emoticons-holder table.plurkCustoms.gallery td:after {
           content: ".";
           font-size: 1px;
           margin-left: -1px;
           opacity: 0; }
-      body #emoticon_selecter.large #emoticons_show .tabWrapper {
+      body #emoticon-selector.large #emoticons-holder .tabWrapper {
         height: 250px;
         padding: 0 20px;
         overflow-y: visible;
         overflow-x: scroll; }
-    body #emoticon_selecter.large table:not(.protected) {
+    body #emoticon-selector.large table:not(.protected) {
       width: 100% !important;
       height: auto !important;
       display: block !important; }
