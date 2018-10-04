@@ -91,13 +91,22 @@ span.emoticon_my_wrapper:after {
 
 body #emotiland {
   z-index: 12020; }
+
+body #emoticon-selector-holder {
+  width: 100% !important;
+}
+
+.pif-emoticon{
+  display:none !important;
+}
+
 body #emoticon-selector {
-  width: 480px !important;
-  min-width: 480px !important;
+  width: 500px !important;
+  min-width: 500px !important;
   z-index: 12000; }
   body #emoticon-selector a:hover img {
     border: none !important; }
-  body #emoticon-selector #emoticons-holder {
+  body #emoticon-selector #emoticons_show {
     position: relative;
     height: 280px !important;
     width: 100% !important;
@@ -107,9 +116,9 @@ body #emoticon-selector {
     color: #555;
     overflow-y: auto;
     background-color: #F9F9FD; }
-    body #emoticon-selector #emoticons-holder .tabWrapper {
+    body #emoticon-selector #emoticons_show .tabWrapper {
       overflow: hidden; }
-    body #emoticon-selector #emoticons-holder .loading {
+    body #emoticon-selector #emoticons_show .loading {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -122,12 +131,12 @@ body #emoticon-selector {
       background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare-grey.gif);
       background-repeat: no-repeat;
       background-size: 80px; }
-    body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery {
+    body #emoticon-selector #emoticons_show table.plurkCustoms.gallery {
       margin: 8px;
       width: 460px; }
-      body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr {
+      body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr {
         display: inline; }
-        body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td {
+        body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td {
           -moz-transition: 0.1s linear;
           -webkit-transition: 0.1s linear;
           display: inline-block !important;
@@ -140,27 +149,27 @@ body #emoticon-selector {
           width: 55px;
           height: 55px;
           cursor: pointer; }
-          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td.highlighted {
+          body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td.highlighted {
             opacity: 1;
             position: relative !important;
             z-index: 9999 !important;
             -webkit-box-shadow: 0 0 2px 3px #4A7DE4 !important;
             -moz-box-shadow: 0 0 2px 3px #4A7DE4 !important; }
-          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a {
+          body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td a {
             display: inline-block;
             width: 100%;
             height: 100%; }
-            body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a.uploading {
+            body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td a.uploading {
               background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-orange.gif);
               background-position: center;
               background-repeat: no-repeat; }
-              body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td a.uploading img {
+              body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td a.uploading img {
                 display: none; }
-          body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery tr td img {
+          body #emoticon-selector #emoticons_show table.plurkCustoms.gallery tr td img {
             vertical-align: middle;
             max-width: 48px;
             max-height: 48px; }
-      body #emoticon-selector #emoticons-holder table.plurkCustoms.gallery:hover td:hover {
+      body #emoticon-selector #emoticons_show table.plurkCustoms.gallery:hover td:hover {
         opacity: 1;
         position: relative !important;
         z-index: 9999 !important;

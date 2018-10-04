@@ -2,21 +2,22 @@ function LazyLoader(container){
 
 	var rows = [];
 	var rowHeight = 50;
-	var scrollMax = 0;	
+	var scrollMax = 0;
 	var self = this;
 
 	this.start = function(){
 		//console.log('LazyLoader.start');
 		this.calculateRows();
 		this.showImages(10);
-	}
+	};
+
 	this.scrollHandler = function(e){
 		var scrollTop = $(e.target).scrollTop();
 		var scrollBottom = scrollTop + $(e.target).height();
 		var threshold = rowHeight*1;
 		var key = Math.ceil((scrollBottom+threshold)/rowHeight);
 		self.showImages(key);
-    }
+    };
 
 	this.calculateRows = function(){
 		var t = new Date();
@@ -31,7 +32,7 @@ function LazyLoader(container){
 			self.rows[key].push(this);
 		});
 		//console.log('rows calculated in ' + (new Date() - t));
-    }
+    };
     this.showImages = function(key){
 		for(var i=0;i<=key;i++){
 			if(this.rows[i] instanceof Array){
@@ -42,12 +43,13 @@ function LazyLoader(container){
 					.removeAttr('data-src');
 				delete this.rows[i];
 			}
-		}	    	
-    }
+		}
+    };
 
     $('.switchWindowMode').livequery('click', this.calculateRows);
 	window.addEventListener("resize", this.calculateRows);
 	$(container).get(0).addEventListener("scroll", this.scrollHandler, true);
+
 
     //this.start();
 }	

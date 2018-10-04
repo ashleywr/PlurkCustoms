@@ -74,7 +74,9 @@ Gallery.prototype.getPanel = function () {
         this.loading.show();
         return self.emoticonsPanel.show().children(':not(.loading)').hide().end();
     } else {
-        var panel = self.emoticonsPanel = $($('#emoticons-holder').get(0) || $('<div id="emoticons-holder" />').css('height', '250px').prependTo('#emoticon-selector_holder')).show().children().hide().end();
+        //var panel = self.emoticonsPanel = $($('#emoticons-holder').get(0) || $('<div id="emoticons-holder" />').css('height', '250px').prependTo('#emoticon-selector-holder')).show().children().hide().end();
+        var panel = self.emoticonsPanel = $($('#emoticons_show').get(0) || $('<div id="emoticons_show" />').css('height', '250px').prependTo('#emoticon-selector-holder')).show().children().hide().end();
+
         var loading = self.loading = self.loading || $('<div/>', {
                 class: 'loading',
                 text: 'Loading...'
@@ -87,7 +89,7 @@ Gallery.prototype.getPanel = function () {
 
         $('#emoticon-tabs li[id^=emo_], #emoticon-tabs li.emo_my_tab ').click(function () {
             $('#emoticon-selector #emoticon_holder_super_parent').show();
-            $('#emoticons-holder').hide();
+            $('#emoticons_show').hide();
         });
         $(panel).css({'position': 'relative'});
         $(panel).click(function (e) {
@@ -140,15 +142,15 @@ Gallery.prototype.registerTab = function (className, opener, label) {
 
                 //RPlurkSmileys 會把它刪掉
                 if (wrapper.parent().length == 0) {
-                    wrapper.appendTo('#emoticons-holder');
+                    wrapper.appendTo('#emoticons_show');
                 }
 
                 //wrapper.show();
                 //self.getPanel();
                 $(this).siblings().removeClass('current').end().addClass('current');
                 // 隱藏官方面板
-                $('#emoticon-selector #emoticon_holder_super_parent').hide();
-                $('#emoticons-holder').show();
+                $('#emoticon-selector #emoticons-holder').hide();
+                $('#emoticons_show').show();
 
                 $('#emoticon-selector').toggleClass('pc-gallery', true);
 
@@ -360,35 +362,50 @@ Gallery.prototype.syncFavorites = function () {
     });
 };
 Gallery.prototype.switchTab = function (className) {
-    if (this.panelWrappers[className].is(':not(:visible)')) {
-        this.tabs[className] && this.tabs[className].click();
+    if (className != "") {
+        if (this.panelWrappers[className].is(':not(:visible)')) {
+            this.tabs[className] && this.tabs[className].click();
+        }
     }
 };
+
 Gallery.prototype.open = function (className, inputTarget) {
-    var self = this;
-    inputTarget = inputTarget || 'input_big';
-    // NOTE: plurkFrom 官方錯字
-    this.lastInputFocused = $('.plurkForm, .plurkFrom').find('#' + inputTarget).get(0);
+    if($("#emoticon-selector-holder").is(":visible")){
+        localScript(`EmoticonSelector.toggleFrom($('#${inputTarget}'),$('#${inputTarget}'));`);
+    }
+    else {
+        var self = this;
+        inputTarget = inputTarget || 'input_big';
+        // NOTE: plurkFrom 官方錯字
+        this.lastInputFocused = $('.plurkForm, .plurkFrom').find('#' + inputTarget).get(0);
 
-    // console.log(inputTarget,this.lastInputFocused)
-    $('#emoticon-selector .tabWrapper').hide();
-    $('#emoticon-tabs').livequery(function () {
-        setTimeout(function () {
-            self.switchTab(className);
-        }, 150);
-    });
 
-    localScript(`EmoticonSelector.toggleFrom($('#${inputTarget}'),$('#${inputTarget}'));`);
+        $('#emoticon-selector #emoticons-holder').hide();
+        $('#emoticon-tabs').livequery(function () {
+            setTimeout(function () {
+                self.switchTab(className);
+            }, 150);
+        });
+
+
+        localScript(`EmoticonSelector.toggleFrom($('#${inputTarget}'),$('#${inputTarget}'));`);
         //localScript("Emoticons.toggle('" + inputTarget + "');");
 
-    self.generateGalleryTab.apply(self, arguments);
+
+        setTimeout(function () {
+            self.generateGalleryTab.apply(self, arguments);
+            $("#emoticon-selector-holder").find(".scroll-bar").remove();
+            $("#emoticon-selector-holder").find(".header").remove();
+        }, 150);
+    }
+
 };
 Gallery.prototype.openGallery = function () {
     var self = this;
     $('#emoticon-tabs').find('li.gallery').livequery(function () {
         self.switchTab('gallery local');
     });
-}   ;
+};
 Gallery.prototype.showGalleryDefault = function (wrapper, loading) {
     var self = this;
     wrapper.empty();

@@ -3,9 +3,14 @@ function shortcut(gallery){
 		$(".mini_form .icons_holder").livequery(function(){
 			renderUI(this);
 		});
-		$("#plurk_form .icons_holder").livequery(function(){
+		$("#plurk_form .icons_holder").livequery(function() {
 			renderUI(this);
 		});
+
+		//$("#plurk_form .icons_holder .pif-emoticon").livequery('click', function(e){
+		//	//Let's just add all our icons to the current choices easier for now
+		//	gallery.open('', findCurrentInput(e.target));
+		//});
 
 		function renderUI(container){
 			$('<span/>', {class: 'plurkcustoms_shortcut',
@@ -36,6 +41,8 @@ function shortcut(gallery){
 
 				]
 			}).appendTo(container)
+
+
 
 		}
 

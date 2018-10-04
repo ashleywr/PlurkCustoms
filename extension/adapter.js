@@ -20,7 +20,7 @@ StorageAdapter.prototype.flush = function(){
 StorageAdapter.prototype.sendExtensionRequest = function(obj, callback){
 	if(this.handup) return false;
 	try{
-		chrome.extension.sendRequest(obj, callback);
+		chrome.extension.sendMessage(obj, callback);
 	}catch(e){
 		this.handup = true;
 		alert(__('發生錯誤：') + e);

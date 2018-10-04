@@ -8,12 +8,12 @@ var Emotion = function (emotion_data) {
         this[i] = emotion_data[i];
     }
     this.url = this.url.replace(/https?:/, '');
-}
+};
 Emotion.prototype = {
     keyword: "",
     hash_id: "",
     url: "",
-}
+};
 
 
 EmoticonsStorage = function () {
@@ -23,27 +23,25 @@ EmoticonsStorage.getFavorites = function () {
     try {
         fav = JSON.parse(fav);
     } catch (e) {
-        fav = new Array();
-        ;
+        fav = [];
     }
-    if (typeof fav != 'object' && typeof fav != 'array') fav = new Array();
-    if (fav == null) fav = new Array();
+    if (typeof fav != 'object' && typeof fav != 'array') fav = [];
+    if (fav == null) fav = [];
     fav = normalizeKeywordFilter(fav);
     return arrayClone(fav);
-}
+};
 EmoticonsStorage.getCollection = function () {
     var fav = localStorage.getItem("emotions_collection");
     try {
         fav = JSON.parse(fav);
     } catch (e) {
-        fav = new Array();
-        ;
+        fav = [];
     }
-    if (typeof fav != 'object' && typeof fav != 'array') fav = new Array();
-    if (fav == null) fav = new Array();
+    if (typeof fav != 'object' && typeof fav != 'array') fav = [];
+    if (fav == null) fav = [];
     fav = normalizeKeywordFilter(fav);
     return arrayClone(fav);
-}
+};
 EmoticonsStorage.removeCollection = function (url) {
     if (!typeof emotion == 'Emotion') throw("EmoticonsStorage.addFavorite(): Emotion expected");
 
@@ -51,7 +49,7 @@ EmoticonsStorage.removeCollection = function (url) {
         return e.url == url;
     });
     localStorage.setItem("emotions_collection", JSON.stringify(emoticons));
-}
+};
 EmoticonsStorage.addCollection = function (emoticon) {
     if (!typeof emotion == 'Emotion') throw("EmoticonsStorage.addFavorite(): Emotion expected");
 
@@ -86,7 +84,7 @@ EmoticonsStorage.addCollection = function (emoticon) {
 
 
     localStorage.setItem("emotions_collection", JSON.stringify(emoticons));
-}
+};
 EmoticonsStorage.addFavorite = function (emotion) {
     if (!typeof emotion == 'Emotion') throw("EmoticonsStorage.addFavorite(): Emotion expected");
 
@@ -141,7 +139,7 @@ EmoticonsStorage.addFavorite = function (emotion) {
             var e = [];
             for (i in emotions) e.push(emotions[i]['favorite']);
             return e;
-        };
+        }
 
         var mid = Math.ceil(array_mid(emotions, 'favorite'));
         if (mid < 2) mid = 2;
@@ -171,18 +169,18 @@ EmoticonsStorage.addFavorite = function (emotion) {
     }
 
     localStorage.setItem("emotions_favorites", JSON.stringify(emotions));
-}
+};
 EmoticonsStorage.renameFavorite = function (url, keyword) {
     var emotions = this.getFavorites();
     for (i in emotions) if (emotions[i].url == url) emotions[i].keyword = keyword;
     localStorage.setItem("emotions_favorites", JSON.stringify(emotions));
-}
+};
 
 EmoticonsStorage.removeFavorite = function (url) {
     var emotions = this.getFavorites();
     for (i in emotions) if (emotions[i].url == url) emotions.splice(i, 1);
     localStorage.setItem("emotions_favorites", JSON.stringify(emotions));
-}
+};
 
 function collect(img) {
     var emoticon = new Emotion({
@@ -203,4 +201,4 @@ $(".plurk img[src*='emos.plurk.com']:not(.collected):not(.exist)").livequery(fun
     $(this).addClass('collected').each(function () {
         collect(this);
     })
-})
+});

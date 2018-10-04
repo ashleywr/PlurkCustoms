@@ -1,7 +1,17 @@
 {
   "manifest_version": 2,
   "background": {
-    "page": "background.html"
+    "scripts": [
+      "js/jquery.min.js",
+      "js/jquery.json-2.2.min.js",
+      "js/md5.js",
+      "js/contextMenu.js",
+      "js/rawinflate.js",
+      "js/rawdeflate.js",
+      "languages.js",
+      "background.js"
+    ],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -44,7 +54,7 @@
         "extension/packer.js",
         "local/portal.js"
       ],
-      "all_frames": false,
+      "all_frames": true,
       "matches": [
         "http://www.plurk.com/*",
         "https://www.plurk.com/*"
