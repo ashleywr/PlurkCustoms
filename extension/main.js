@@ -87,7 +87,7 @@ var GLOBAL;
 
 		//註冊外掛
 		gallery.registerPlugin(new CandidatePlugin(gallery), 'CandidatePlugin');
-		gallery.registerPlugin(new CollectorPlugin(gallery), 'CollectorPlugin');
+		//gallery.registerPlugin(new CollectorPlugin(gallery), 'CollectorPlugin');
 		gallery.registerPlugin(new AdvancedGalleryPlugin(gallery), 'AdvancedGalleryPlugin');
 
 		// gallery.registerPlugin(new LocalPluginAdapter('PlurkBoxAdvancedPlugin', __('噗文時間列')), 'PlurkBoxAdvancedPlugin');

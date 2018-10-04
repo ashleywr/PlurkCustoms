@@ -50,15 +50,13 @@ Gallery.prototype.init = function () {
         self.lastInputFocused = document.getElementById('input_big_private');
     });
 
-
-    $('.emoticon-selector_img_off').livequery('click', function () {
+    $('.emoticon-selector_img_off').livequery('click',function(){
         self.generateGalleryTab();
     });
 
-    //$('.icons_holder li').livequery('click', function () {
-    //    self.generateGalleryTab();
-    //});
-
+    $('#emoticon-selector').livequery(function(){
+        self.generateGalleryTab();
+    });
     // 如果開啟非官方面板，加上 pc-gallery
     $('#emoticon-tabs').find('li').livequery('click', function () {
         $('#emoticon-selector').toggleClass('pc-gallery', $(this).is(':not([id^="emo_"], .emo_my_tab)'));
@@ -381,11 +379,9 @@ Gallery.prototype.open = function (className, inputTarget) {
 
 
         $('#emoticon-selector #emoticons-holder').hide();
-        $('#emoticon-tabs').livequery(function () {
-            setTimeout(function () {
-                self.switchTab(className);
-            }, 150);
-        });
+        //$('#emoticon-tabs').livequery(function () {
+        //        self.switchTab(className);
+        //});
 
 
         localScript(`EmoticonSelector.toggleFrom($('#${inputTarget}'),$('#${inputTarget}'));`);
@@ -394,8 +390,7 @@ Gallery.prototype.open = function (className, inputTarget) {
 
         setTimeout(function () {
             self.generateGalleryTab.apply(self, arguments);
-            $("#emoticon-selector-holder").find(".scroll-bar").remove();
-            $("#emoticon-selector-holder").find(".header").remove();
+
         }, 150);
     }
 
@@ -910,46 +905,46 @@ Gallery.prototype.showBackupTab = function (wrapper, loading) {
 };
 Gallery.prototype.deprecateDefaultTab = function () {
     return false;
-    $("#emo_my").bind('click', function () {
-        var t = setInterval(function () {
-            $(".emoticons_my #emoticons_my_holder")
-                .find('.gallery:not(:Event(click))').click(function () {
-                $(".emoticon-selector.plurkCustoms.gallery").click();
-                return false;
-            }).end()
-                .find('.showMyEmotions:not(:Event(click))').click(function () {
-                $(this).parents('#emoticons_my_holder').find('.protect').hide();
-                $(this).parents('#emoticons_my_holder').find('.protected').addClass('forced').show();
-                return false;
-            }).end();
-
-            if ($(".emoticons_my #emoticons_my_holder table:not(.protected)").length == 0) {
-                return;
-            } else {
-                clearInterval(t);
-            }
-
-            $(".emoticons_my #emoticons_my_holder")
-                .find('table').addClass('protected').hide().end()
-                .append(
-                    $("<ol class='protect' style='margin:20px auto;color:#555;width:350px;'></ol>")
-                        .append($("<li style='margin:20px 0px;'/>").html(__("PlurkCustoms 已經代管噗浪自訂表情<br> 您應該從「<a class='gallery'>圖庫</a>」來使用表符")))
-                        .append($("<li style='margin:20px 0px;'/>").html(__("您可以按上方的「新增...」來上傳圖片到圖庫")))
-                        .append($("<li style='margin:20px 0px;'/>").html(__("或者也可以點選任何他人的自訂表情新增到圖庫")))
-                        .append($("<li style='margin:20px 0px;'/>").html(__("如果仍需要顯示線上的自訂表情請按一下<a class='showMyEmotions'>這裡</a>")))
-                )
-                .find('a').css({'cursor': 'pointer'}).end()
-                .find('.gallery:not(:Event(click))').click(function () {
-                $(".emoticon-selector.plurkCustoms.gallery").click();
-                return false;
-            }).end()
-                .find('.showMyEmotions:not(:Event(click))').click(function () {
-                $(this).parents('#emoticons_my_holder').find('.protect').hide();
-                $(this).parents('#emoticons_my_holder').find('.protected').addClass('forced').show();
-                return false;
-            }).end();
-        }, 200);
-    })
+    //$("#emo_my").bind('click', function () {
+    //    var t = setInterval(function () {
+    //        $(".emoticons_my #emoticons_my_holder")
+    //            .find('.gallery:not(:Event(click))').click(function () {
+    //            $(".emoticon-selector.plurkCustoms.gallery").click();
+    //            return false;
+    //        }).end()
+    //            .find('.showMyEmotions:not(:Event(click))').click(function () {
+    //            $(this).parents('#emoticons_my_holder').find('.protect').hide();
+    //            $(this).parents('#emoticons_my_holder').find('.protected').addClass('forced').show();
+    //            return false;
+    //        }).end();
+    //
+    //        if ($(".emoticons_my #emoticons_my_holder table:not(.protected)").length == 0) {
+    //            return;
+    //        } else {
+    //            clearInterval(t);
+    //        }
+    //
+    //        $(".emoticons_my #emoticons_my_holder")
+    //            .find('table').addClass('protected').hide().end()
+    //            .append(
+    //                $("<ol class='protect' style='margin:20px auto;color:#555;width:350px;'></ol>")
+    //                    .append($("<li style='margin:20px 0px;'/>").html(__("PlurkCustoms 已經代管噗浪自訂表情<br> 您應該從「<a class='gallery'>圖庫</a>」來使用表符")))
+    //                    .append($("<li style='margin:20px 0px;'/>").html(__("您可以按上方的「新增...」來上傳圖片到圖庫")))
+    //                    .append($("<li style='margin:20px 0px;'/>").html(__("或者也可以點選任何他人的自訂表情新增到圖庫")))
+    //                    .append($("<li style='margin:20px 0px;'/>").html(__("如果仍需要顯示線上的自訂表情請按一下<a class='showMyEmotions'>這裡</a>")))
+    //            )
+    //            .find('a').css({'cursor': 'pointer'}).end()
+    //            .find('.gallery:not(:Event(click))').click(function () {
+    //            $(".emoticon-selector.plurkCustoms.gallery").click();
+    //            return false;
+    //        }).end()
+    //            .find('.showMyEmotions:not(:Event(click))').click(function () {
+    //            $(this).parents('#emoticons_my_holder').find('.protect').hide();
+    //            $(this).parents('#emoticons_my_holder').find('.protected').addClass('forced').show();
+    //            return false;
+    //        }).end();
+    //    }, 200);
+    //})
 };
 Gallery.prototype.showPanel = function (panel) {
 };
@@ -964,6 +959,9 @@ Gallery.prototype.generateGalleryTab = function () {
     createStyle(doc, ".emoticon-selector.delete.current{ background:red !important; }	.emoticon-selector.delete.current a{ color:white !important;}");
     createStyle(doc, ".emoticon-selector.rename.current{ background:green !important; }	.emoticon-selector.rename.current a{ color:white !important;}");
     createStyle(doc, ".emoticon-selector.backup.current{ background:#CF5A00 !important; }	.emoticon-selector.backup.current a{ color:white !important;}");
+
+    $("#emoticon-selector-holder").find(".scroll-bar").remove();
+    $("#emoticon-selector-holder").find(".header").remove();
 
     //add tab
     function switchTab(e) {
@@ -990,11 +988,14 @@ Gallery.prototype.generateGalleryTab = function () {
 
 
     this.registerTab('gallery favorite', this.showGalleryFavorite, __('最常用的'));
-    this.registerTab('gallery seen', this.showGallerySeen, __('蒐集者之眼'));
+    //this.registerTab('gallery seen', this.showGallerySeen, __('蒐集者之眼'));
     this.registerTab('backup', this.showBackupTab, __('備份'));
 
     this.registerTab('setting', this.showSettingTab, __('設定'));
     this.registerTab('tools', this.showToolsTab, __('工具'));
+
+
+    self.switchTab("gallery local");
 
 
     //Make it draggable

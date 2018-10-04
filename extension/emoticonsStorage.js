@@ -190,15 +190,16 @@ function collect(img) {
     });
     EmoticonsStorage.addCollection(emoticon);
 }
-$(".plurk_box ").livequery(function () {
-    var imgs = $(this).find("img[src*='emos.plurk.com']:not(.collected):not(.exist)");
-    imgs.addClass('collected').each(function () {
-        collect(this);
-    })
 
-});
-$(".plurk img[src*='emos.plurk.com']:not(.collected):not(.exist)").livequery(function () {
-    $(this).addClass('collected').each(function () {
-        collect(this);
-    })
-});
+//$(".plurk_box ").livequery(function () {
+//    var imgs = $(this).find("img[src*='emos.plurk.com']:not(.collected):not(.exist)");
+//    imgs.addClass('collected').each(function () {
+//        collect(this);
+//    })
+//
+//});
+//$(".plurk img[src*='emos.plurk.com']:not(.collected):not(.exist)").livequery(function () {
+//    $(this).addClass('collected').each(function () {
+//        collect(this);
+//    })
+//});
